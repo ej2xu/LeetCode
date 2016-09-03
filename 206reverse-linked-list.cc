@@ -9,6 +9,29 @@
 class Solution {
 public:
     ListNode* reverseList(ListNode* head) {
+      return f(head, NULL);
+    }
+    ListNode* f(ListNode* h, ListNode* t) {
+      if (!h->next) {
+        h->next = t;
+        return h;
+      }
+      ListNode* newH = h->next;
+      h->next = t;
+      return f(newH, h);
+    }
+};
 
+class Solution {
+public:
+    ListNode* reverseList(ListNode* h) {
+      ListNode* newH, *t = NULL;
+      while(h) {
+        newH = h->next;
+        h->next = t;
+        t = h;
+        h = newH;
+      }
+      return t;
     }
 };
