@@ -20,7 +20,7 @@ public:
         while (!s.empty() && s.top()->right == p) {
           p = s.top();
           s.pop();
-          res.push_back(s->val);
+          res.push_back(p->val);
         }
         if (s.empty()) break;
         p = s.top()->right;

@@ -10,10 +10,12 @@
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* x, TreeNode* p, TreeNode* q) {
+      if (p->val > q->val)
+        swap(p, q);
       while (x) {
-        if (x->val > p->val && x->val > q->val)
+        if (x->val > q->val)
           x = x->left;
-        else if (x->val < p->val && x->val < q->val)
+        else if (x->val < p->val)
           x = x-> right;
         else break;
       }
@@ -24,11 +26,8 @@ public:
 // recursive Solution
 class Solution {
 public:
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
-    {
-        if(!root || root==p || root==q) return root;
-        if(root->val>p->val && root->val>q->val) return lowestCommonAncestor(root->left, p, q);
-        if(root->val<p->val && root->val<q->val) return lowestCommonAncestor(root->right, p, q);
-        return root;
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+      return (root->val - p->val) * (root->val - q->val) < 1 ? root :
+         lowestCommonAncestor(p->val < root->val ? root->left : root->right, p, q);
     }
 };
