@@ -8,3 +8,13 @@ public:
       return i == s.size();
     }
 };
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+      const char *s = s.c_str(), *t = t.c_str();
+      while (*t)
+        s += *s == *t++;
+      return !*s;
+    }
+};

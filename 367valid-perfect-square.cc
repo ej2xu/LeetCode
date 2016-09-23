@@ -24,3 +24,10 @@ public:
     return num == 1;
   }
 };
+
+bool isPerfectSquare(int x) {
+  long r = x;
+  while (r*r > x)
+      r = (r + x/r) >> 1;
+  return r*r == x;
+}
