@@ -13,10 +13,9 @@ public:
   }
   int powmod(int a, int b, int m) {
     int res = 1;
-    for (; b; b >>= 1, a = a * a % m) {
+    for (; b; b >>= 1, a = a * a % m)
       if (b & 1)
         res = res * a % m;
-    }
     return res;
   }
 };
