@@ -2,7 +2,6 @@ class Solution {
 public:
   struct cell {
     int x, y, h;
-    cell() {}
     cell(int _x, int _y, int _h) : x(_x), y(_y), h(_h) {}
   };
   struct cmp {
@@ -15,7 +14,7 @@ public:
     int n = heights.size(), m = heights[0].size();
     vector<vector<bool>> visit(n, vector<bool>(m, false));
     priority_queue<cell, vector<cell>, cmp> heap;
-    for (int i = 0; i < n; ++i) {
+    for (int i = 1; i < n-1; ++i) {
       heap.emplace(i, 0, heights[i][0]);
       heap.emplace(i, m - 1, heights[i][m-1]);
       visit[i][0] = visit[i][m-1] = true;
@@ -25,6 +24,7 @@ public:
         heap.emplace(n - 1, j, heights[n-1][j]);
         visit[0][j] = visit[n-1][j] = true;
     }
+    visit[0][0] = visit[n-1][0] = visit[n-1][m-1] = visit[0][m-1] = true;
     int res = 0;
     const int dx[4] = {0, 1, 0, -1};
     const int dy[4] = {1, 0, -1, 0};

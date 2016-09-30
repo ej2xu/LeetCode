@@ -35,23 +35,20 @@ public:
 class Solution {
 public:
   int search(vector<int> &a, int target) {
-    int n = a.size(), l = 0, h = n;
-    while (l < h) {
+    int n = a.size(), l = 0, h = n-1;
+    while (l <= h) {
       int m = l+h >> 1;
-      if (a[m] < target) {
-        if (target < a[l] || a[l] < a[m])
-          l = m+1;
-        else
-          h = m;
-      } else if (a[m] > target) {
-        if (a[l] <= target || a[l] > a[m])
-          h = m;
-        else
-          l = m+1;
+      if (a[m] == target) return true;
+      if (a[m] > a[h]) {
+        if (a[m] > target && a[l] <= target) h = m-1;
+        else l = m+1;
+      } else if (a[m] < a[h]) {
+        if (a[m] < target && a[h] >= target) l = m+1;
+        else h = m-1;
       } else
-        return m;
+        h--;
     }
-    return -1;
+    return false;
   }
 };
 
@@ -80,49 +77,3 @@ public:
     return false;
   }
 };
-
-///
-
-class Solution {
-public:
-  bool search(vector<int> &a, int target) {
-    int l = 0, h = a.size();
-    while (l < h) {
-      int m = l+h >> 1;
-      if (a[m] == target) return true;
-      if (a[l] < a[m]) {
-        if (a[l] <= target && target < a[m])
-          h = m;
-        else
-          l = m+1;
-      } else if (a[l] > a[m]) {
-        if (a[m] < target && target <= a[h-1])
-          l = m+1;
-        else
-          h = m;
-      } else
-        l++;
-    }
-    return false;
-  }
-};
-
-// a brilliant one
-int search(vector<int>& nums, int target) {
-    int lo = 0, hi = nums.size();
-    while (lo < hi) {
-        int mid = (lo + hi) / 2;
-
-        double num = (nums[mid] < nums[0]) == (target < nums[0])
-                   ? nums[mid]
-                   : target < nums[0] ? -INFINITY : INFINITY;
-
-        if (num < target)
-            lo = mid + 1;
-        else if (num > target)
-            hi = mid;
-        else
-            return mid;
-    }
-    return -1;
-}
