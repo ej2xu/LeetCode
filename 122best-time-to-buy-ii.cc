@@ -10,7 +10,7 @@ public:
   }
 };
 
-//peak valley
+//peak valley: 6ms
 class Solution {
 public:
   int maxProfit(vector<int>& prices) {
@@ -26,6 +26,7 @@ public:
   }
 };
 
+// 9ms
 class Solution {
 public:
   int maxProfit(vector<int>& prices) {
