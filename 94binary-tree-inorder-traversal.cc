@@ -1,30 +1,21 @@
-/**
- * Definition for a binary tree node.
- * struct TreeNode {
- *     int val;
- *     TreeNode *left;
- *     TreeNode *right;
- *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
- * };
- */
 class Solution {
 public:
-    vector<int> inorderTraversal(TreeNode* p) {
-      vector<int> res;
-      stack<TreeNode *> s;
-      while (true) {
-        while (p) {
-          s.push(p);
-          p = p->left;
-        }
-        if (s.empty()) break;
-        p = s.top();
-        s.pop();
-        res.push_back(p->val);
-        p = p->right;
+  vector<int> inorderTraversal(TreeNode* p) {
+    vector<int> res;
+    stack<TreeNode *> s;
+    while (true) {
+      while (p) {
+        s.push(p);
+        p = p->left;
       }
-      return res;
+      if (s.empty()) break;
+      p = s.top();
+      s.pop();
+      res.push_back(p->val);
+      p = p->right;
     }
+    return res;
+  }
 };
 
 // Morris in-order traversal

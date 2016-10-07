@@ -58,20 +58,12 @@ public:
 		while (true) {
 			for (i = s-1; i > 0; i--)
 				if (a[i-1] < a[i]) break;
-
       if (!i) break;
-
-			for (j = s-1; j > i-1; j--)
-				if (a[j] > a[i-1]) break;
+			for (j = s-1; a[j] <= a[i-1]; j--);
 			swap(a[i-1], a[j]);
-			reverse(a, i, s-1);
+			reverse(a.begin()+i, a.end());
 			res.push_back(a);
 		}
 		return res;
-  }
-private:
-	void reverse(vector<int> &a, int s, int e) {
-		while (s<e)
-			swap(a[s++], a[e--]);
   }
 };
