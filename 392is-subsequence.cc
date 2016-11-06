@@ -1,20 +1,22 @@
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
-      int i = 0, j=0;
-      for (; i<s.size() && j < t.size(); j++)
-        if (s[i] == t[j])
-          i++;
-      return i == s.size();
+      const char *s = s.c_str(), *t = t.c_str();
+      while (*t)
+        s += *s == *t++;
+      return !*s;
     }
 };
 
 class Solution {
 public:
     bool isSubsequence(string s, string t) {
-      const char *s = s.c_str(), *t = t.c_str();
-      while (*t)
-        s += *s == *t++;
-      return !*s;
+      if (s.empty()) return true;
+      const char *sc = s.c_str(), *tc = t.c_str();
+      while (*tc) {
+        sc += *sc == *tc++;
+        if (!*sc) return true;
+      }
+      return false;
     }
 };

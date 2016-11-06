@@ -42,8 +42,8 @@ public:
         {
             vector<string> tempres;
             string chars = charmap[digits[i] - '2'];
-            for (int c = 0; c < chars.size();c++)
-                for (int j = 0; j < res.size();j++)
+            for (int c = 0; c < chars.size(); c++)
+                for (int j = 0; j < res.size(); j++)
                     tempres.push_back(res[j]+chars[c]);
             res = tempres;
         }
